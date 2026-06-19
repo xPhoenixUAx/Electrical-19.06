@@ -118,10 +118,13 @@
           <a href="${root}index.html">Home</a>
           <button class="mobile-accordion" type="button" aria-expanded="false">Services ${icon("chevron-down")}</button>
           <div class="mobile-subnav">
-            ${Object.entries(groups).map(([category, items]) => `
-              <strong>${category}</strong>
-              ${items.map((item) => `<a href="${serviceUrl(item.slug)}">${item.title}</a>`).join("")}
-            `).join("")}
+            <div class="mobile-subnav-inner">
+              <a class="mobile-all-services" href="${root}services.html">All Services</a>
+              ${Object.entries(groups).map(([category, items]) => `
+                <strong>${category}</strong>
+                ${items.map((item) => `<a href="${serviceUrl(item.slug)}">${item.title}</a>`).join("")}
+              `).join("")}
+            </div>
           </div>
           <a href="${root}about.html">About</a>
           <a href="${root}contact.html">Contact</a>
