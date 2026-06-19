@@ -1,0 +1,22 @@
+window.SITE_CONFIG = {
+  companyName: "VoltEdge Electrical",
+  companyLegalName: "VoltEdge Electrical Services LLC",
+  companyId: "ID: VE-2048-EL",
+  phone: "+18007654321",
+  phoneDisplay: "1 (800) 765-43-21",
+  phoneButtonLabel: "Call VoltEdge",
+  email: "service@voltedge-electrical.com",
+  website: "www.voltedge-electrical.com",
+  addressLine1: "8494 Signal Hill Road",
+  addressLine2: "Manassas, VA 20110",
+  serviceArea: "Residential and light commercial service across Manassas, Fairfax, Arlington, Alexandria, Woodbridge, and nearby Northern Virginia communities.",
+  businessHours: "Mon-Fri 8:00 AM - 5:00 PM; emergency dispatch by request",
+  footerTextPrimary: "Full-cycle electrical planning, installation, repair, inspection, and upgrade coordination for homes and light commercial properties.",
+  footerTextSecondary: "VoltEdge Electrical connects customers with independent local electrical providers and helps organize service requests from the first call to the final walkthrough.",
+  disclaimerShort: "Free electrical service request support. Independent providers perform the work.",
+  disclaimerFull: "This site is a free service to assist customers in connecting with local electrical service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed. It is the responsibility of the customer to verify that the hired contractor/provider furnishes the necessary license, insurance, certification, permit, or other credentials required for the electrical work being performed. All persons depicted in a photo or video are actors or models and not contractors/providers listed on this site.",
+  footerDisclaimer: "Disclaimer: This site is a free service to assist users/customers in connecting with local service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed. It is the responsibility of the customer to verify that the hired contractor/provider furnishes the necessary license, insurance, certification, or other credentials required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors/providers listed on this site.",
+  copyrightLine: "All rights reserved. Electrical service requests are routed for provider matching and follow-up.",
+  ctaPrimary: "Request Service",
+  ctaSecondary: "Explore Services"
+};

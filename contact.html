@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | VoltEdge Electrical</title>
+  <meta name="description" content="Submit an electrical service request for repairs, upgrades, inspections, installations, EV chargers, lighting, or generator backup power.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bundle.css?v=2026061931">
+</head>
+<body data-page="contact" data-root="">
+  <div data-site-header></div>
+  <main>
+    <section class="page-hero" style="background-image:url('img/generated/contact-consultation.webp')">
+      <div class="container page-hero-inner reveal">
+        <span class="eyebrow">Request service</span>
+        <h1>Tell us what needs power, repair, or planning.</h1>
+        <p>Share the service type, symptoms, project details, and preferred contact path. The success message and contact data are config-driven.</p>
+      </div>
+    </section>
+    <section class="section muted-section">
+      <div class="container contact-grid">
+        <form class="form-card reveal" data-contact-form>
+          <div class="section-kicker">
+            <div>
+              <span class="eyebrow">Contact form</span>
+              <h2>Start a request</h2>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" autocomplete="tel" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Service selection</label>
+              <select id="service" name="service" data-service-select required></select>
+            </div>
+            <div class="form-group full">
+              <label for="message">Message / project details</label>
+              <textarea id="message" name="message" placeholder="Describe the issue, property type, timing, and any photos or details you can provide." required></textarea>
+            </div>
+          </div>
+          <p style="margin-top:16px" data-disclaimer-short>Free electrical service request support. Independent providers perform the work.</p>
+          <button class="btn btn-primary" style="margin-top:18px" type="submit"><i data-lucide="send" aria-hidden="true"></i><span data-cta-primary>Request Service</span></button>
+          <div class="success-message" data-success-message role="status"></div>
+        </form>
+        <aside class="contact-media contact-rail reveal">
+          <span class="eyebrow">Direct details</span>
+          <h2>Use the form or reach us through the configured contact paths.</h2>
+          <div class="contact-card">
+            <a href="tel:+18007654321" data-phone-link><i data-lucide="phone" aria-hidden="true"></i><span><strong data-phone-text>1 (800) 765-43-21</strong></span></a>
+            <a href="mailto:service@voltedge-electrical.com" data-email-link><i data-lucide="mail" aria-hidden="true"></i><span data-email-text>service@voltedge-electrical.com</span></a>
+            <a href="https://www.voltedge-electrical.com" data-website-link><i data-lucide="globe-2" aria-hidden="true"></i><span data-website-text>www.voltedge-electrical.com</span></a>
+            <span><i data-lucide="map-pin" aria-hidden="true"></i><span data-company-address>8494 Signal Hill Road, Manassas, VA 20110</span></span>
+            <span><i data-lucide="clock-3" aria-hidden="true"></i><span data-business-hours>Mon-Fri 8:00 AM - 5:00 PM</span></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <a class="floating-phone" href="tel:+18007654321" data-phone-link aria-label="Call electrical service"><i data-lucide="phone-call" aria-hidden="true"></i></a>
+  <button class="back-to-top" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i data-lucide="arrow-up" aria-hidden="true"></i></button>
+  <div data-site-footer></div>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/site-config.js?v=2026061931"></script>
+  <script src="js/services-data.js?v=2026061931"></script>
+  <script src="js/main.js?v=2026061931"></script>
+</body>
+</html>
