@@ -128,7 +128,6 @@
           </div>
           <a href="${root}about.html">About</a>
           <a href="${root}contact.html">Contact</a>
-          <a class="btn btn-primary" href="${root}contact.html" data-cta-primary>${config.ctaPrimary}</a>
         </nav>
       </aside>
       <div class="panel-scrim" data-close-menu></div>
@@ -282,44 +281,52 @@
 
   function renderAudienceGroups(target, activeSlug, animate) {
     const activeGroup = audienceGroups.find((group) => group.slug === activeSlug);
-    const activeServices = activeGroup ? activeGroup.serviceSlugs.map((slug) => bySlug[slug]).filter(Boolean) : [];
+    const audienceServicesMarkup = (group) => {
+      const groupServices = group.serviceSlugs.map((slug) => bySlug[slug]).filter(Boolean);
+      return `
+        <div class="audience-services-head">
+          <div>
+            <span class="eyebrow">${group.title} services</span>
+            <h3>${group.title} electrical service list</h3>
+          </div>
+          <p>${group.intro}</p>
+        </div>
+        <div class="audience-service-list">
+          ${groupServices.map((service) => `
+            <a class="audience-service-link" href="${serviceUrl(service.slug)}">
+              <span class="audience-service-icon">${icon(service.icon)}</span>
+              <span>
+                <strong>${service.title}</strong>
+                <small>${service.short}</small>
+              </span>
+              ${icon("arrow-right")}
+            </a>
+          `).join("")}
+        </div>
+      `;
+    };
     target.dataset.activeGroup = activeGroup ? activeGroup.slug : "";
     target.innerHTML = `
       <div class="audience-explorer">
         <div class="audience-panels" role="tablist" aria-label="Service groups">
           ${audienceGroups.map((group) => `
-            <article class="audience-panel ${activeGroup && group.slug === activeGroup.slug ? "active" : ""}">
+            <article class="audience-panel ${activeGroup && group.slug === activeGroup.slug ? "active" : ""} ${activeGroup && group.slug === activeGroup.slug && !animate ? "services-open" : ""}">
               <img src="${assetUrl(group.image)}" alt="${group.title} electrical services" loading="lazy">
               <button class="audience-trigger" type="button" role="tab" aria-selected="${activeGroup && group.slug === activeGroup.slug ? "true" : "false"}" aria-expanded="${activeGroup && group.slug === activeGroup.slug ? "true" : "false"}" aria-controls="audience-services" data-audience-trigger="${group.slug}">
                 <span>${group.title}</span>
                 <i data-lucide="${activeGroup && group.slug === activeGroup.slug ? "minus" : "plus"}" aria-hidden="true"></i>
               </button>
+              <div class="audience-panel-services" id="audience-services-${group.slug}">
+                <div class="audience-services">
+                  ${activeGroup && group.slug === activeGroup.slug ? audienceServicesMarkup(group) : ""}
+                </div>
+              </div>
             </article>
           `).join("")}
         </div>
         <div class="audience-services-wrap ${activeGroup && !animate ? "open" : ""}" id="audience-services">
           <div class="audience-services">
-            ${activeGroup ? `
-              <div class="audience-services-head">
-                <div>
-                  <span class="eyebrow">${activeGroup.title} services</span>
-                  <h3>${activeGroup.title} electrical service list</h3>
-                </div>
-                <p>${activeGroup.intro}</p>
-              </div>
-              <div class="audience-service-list">
-                ${activeServices.map((service) => `
-                  <a class="audience-service-link" href="${serviceUrl(service.slug)}">
-                    <span class="audience-service-icon">${icon(service.icon)}</span>
-                    <span>
-                      <strong>${service.title}</strong>
-                      <small>${service.short}</small>
-                    </span>
-                    ${icon("arrow-right")}
-                  </a>
-                `).join("")}
-              </div>
-            ` : ""}
+            ${activeGroup ? audienceServicesMarkup(activeGroup) : ""}
           </div>
         </div>
       </div>
@@ -328,6 +335,7 @@
     if (activeGroup && animate) {
       requestAnimationFrame(() => {
         target.querySelector(".audience-services-wrap")?.classList.add("open");
+        target.querySelector(".audience-panel.active")?.classList.add("services-open");
       });
     }
   }
@@ -491,15 +499,17 @@
       const next = target.dataset.activeGroup === trigger.dataset.audienceTrigger ? "" : trigger.dataset.audienceTrigger;
       if (!next) {
         const wrap = target.querySelector(".audience-services-wrap");
+        target.querySelector(".audience-panel.active")?.classList.remove("services-open");
         wrap?.classList.remove("open");
         setTimeout(() => renderAudienceGroups(target, ""), 320);
         return;
       }
       if (current) {
         const wrap = target.querySelector(".audience-services-wrap");
+        target.querySelector(".audience-panel.active")?.classList.remove("services-open");
         wrap?.classList.add("is-switching");
         setTimeout(() => {
-          renderAudienceGroups(target, next);
+          renderAudienceGroups(target, next, true);
           const nextWrap = target.querySelector(".audience-services-wrap");
           nextWrap?.classList.add("is-switching");
           requestAnimationFrame(() => {
@@ -543,11 +553,12 @@
         if (!entry.isIntersecting) return;
         const node = entry.target;
         const target = Number(node.dataset.count || 0);
+        const suffix = node.dataset.suffix ?? "+";
         let start = 0;
         const step = Math.max(1, Math.round(target / 70));
         const tick = () => {
           start = Math.min(target, start + step);
-          node.textContent = `${start.toLocaleString()}+`;
+          node.textContent = `${start.toLocaleString()}${suffix}`;
           if (start < target) requestAnimationFrame(tick);
         };
         tick();
