@@ -184,7 +184,7 @@
         </div>
         <div class="footer-bottom">
           <div class="container">
-            <span data-copyright-line>© <span data-year></span> ${config.companyName}. ${config.copyrightLine}</span>
+            <span data-copyright-line>&copy; <span data-year></span> ${config.companyName}. ${config.copyrightLine}</span>
           </div>
         </div>
       </footer>

@@ -269,6 +269,19 @@ p { margin: 0; color: var(--muted); }
   color: #fff;
   cursor: pointer;
 }
+.menu-toggle i,
+.menu-close i,
+.floating-phone i,
+.back-to-top i {
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  line-height: 1;
+}
+.menu-toggle i::before { content: "☰"; font-size: 20px; }
+.menu-close i::before { content: "×"; font-size: 24px; }
+.floating-phone i::before { content: "☎"; font-size: 23px; }
+.back-to-top i::before { content: "↑"; font-size: 22px; }
 
 .mobile-panel {
   position: fixed;
@@ -278,17 +291,21 @@ p { margin: 0; color: var(--muted); }
   width: min(360px, 88vw);
   background: var(--ink);
   color: #fff;
-  z-index: 90;
+  z-index: 140;
   transform: translateX(100%);
   transition: transform .3s ease;
   padding: 22px;
   overflow-y: auto;
+  pointer-events: none;
 }
-.menu-open .mobile-panel { transform: translateX(0); }
+.menu-open .mobile-panel {
+  transform: translateX(0);
+  pointer-events: auto;
+}
 .panel-scrim {
   position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: 130;
   background: rgba(0,0,0,.55);
   opacity: 0;
   pointer-events: none;
